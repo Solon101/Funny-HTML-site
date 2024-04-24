@@ -33,9 +33,25 @@
         transition: all 0.5s ease; /* Add transition effect to square */
     }
 
-    #oreoImage {
+    #buttonContainer {
         position: fixed;
         bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #linkButton {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #oreoImage {
+        position: fixed;
+        bottom: 50px; /* Adjust position to be below the button */
         left: 50%;
         transform: translateX(-50%);
         opacity: 0;
@@ -50,6 +66,10 @@
 
     <div id="square1" class="square"></div>
     <div id="square2" class="square"></div>
+
+    <div id="buttonContainer">
+        <a href="2.html"><button id="linkButton">Go to Page 2</button></a>
+    </div>
 
     <img id="oreoImage" src="Oreo.png" alt="Oreo">
 
@@ -123,10 +143,15 @@ function fadeOutOreo() {
 }
 
 // Fade in the Oreo image every minute
-setInterval(fadeInOreo, 15000);
+setInterval(fadeInOreo, 60000);
 
 // Fade out the Oreo image after 3 seconds
 setTimeout(fadeOutOreo, 3000);
+
+updateSquareColor(); // Update square color initially
+animateSquare(document.getElementById("square1")); // Start square1 animation
+animateSquare(document.getElementById("square2")); // Start square2 animation
+setInterval(updateSquareColor, 1000); // Update square color every second
 </script>
 </body>
 </html>
