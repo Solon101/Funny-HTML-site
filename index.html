@@ -32,31 +32,6 @@
         border-radius: 5px;
         transition: all 0.5s ease; /* Add transition effect to square */
     }
-
-    #buttonContainer {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    #linkButton {
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    #oreoImage {
-        position: fixed;
-        bottom: 50px; /* Adjust position to be below the button */
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 0;
-        transition: opacity 3s ease; /* Add transition effect to opacity */
-    }
 </style>
 </head>
 <body onmousemove="changeBackgroundColor(event)">
@@ -66,12 +41,6 @@
 
     <div id="square1" class="square"></div>
     <div id="square2" class="square"></div>
-
-    <div id="buttonContainer">
-        <a href="2.html"><button id="linkButton">Go to Page 2</button></a>
-    </div>
-
-    <img id="oreoImage" src="Oreo.png" alt="Oreo">
 
 <script>
 function playSound() {
@@ -129,24 +98,6 @@ function animateSquare(square) {
         square.style.top = y + "px";
     }, 10);
 }
-
-// Function to fade in the Oreo image
-function fadeInOreo() {
-    var oreoImage = document.getElementById("oreoImage");
-    oreoImage.style.opacity = 1; // Set opacity to 1 to fade in
-}
-
-// Function to fade out the Oreo image
-function fadeOutOreo() {
-    var oreoImage = document.getElementById("oreoImage");
-    oreoImage.style.opacity = 0; // Set opacity to 0 to fade out
-}
-
-// Fade in the Oreo image every minute
-setInterval(fadeInOreo, 60000);
-
-// Fade out the Oreo image after 3 seconds
-setTimeout(fadeOutOreo, 3000);
 
 updateSquareColor(); // Update square color initially
 animateSquare(document.getElementById("square1")); // Start square1 animation
