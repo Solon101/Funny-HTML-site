@@ -32,6 +32,18 @@
         border-radius: 5px;
         transition: all 0.5s ease; /* Add transition effect to square */
     }
+    #goToHTML2 {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        padding: 20px 40px;
+        font-size: 18px;
+        background-color: blue;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 10px;
+    }
 </style>
 </head>
 <body onmousemove="changeBackgroundColor(event)">
@@ -42,73 +54,73 @@
     <div id="square1" class="square"></div>
     <div id="square2" class="square"></div>
 
-    <button id="redirectButton" onclick="redirectToPage()">Go to 2.html</button>
+    <button id="goToHTML2" onclick="redirectToHTML2()">Go to HTML 2</button>
 
-    <script>
-        function playSound() {
-            var audio = document.getElementById("audio");
-            audio.play();
+<script>
+function playSound() {
+    var audio = document.getElementById("audio");
+    audio.play();
+}
+
+function changeBackgroundColor(event) {
+    var mouseX = event.clientX;
+    var mouseY = event.clientY;
+
+    var red = mouseX % 256;
+    var green = mouseY % 256;
+    var blue = (mouseX + mouseY) % 256;
+
+    document.body.style.backgroundColor = "rgb(" + red + ", " + green + ", " + blue + ")";
+}
+
+function updateSquareColor() {
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+
+    var red = hours * 10; // Red component based on hours
+    var green = minutes * 4; // Green component based on minutes
+    var blue = seconds * 4; // Blue component based on seconds
+
+    var squares = document.getElementsByClassName("square");
+    for (var i = 0; i < squares.length; i++) {
+        squares[i].style.backgroundColor = "rgb(" + red + ", " + green + ", " + blue + ")";
+    }
+}
+
+function animateSquare(square) {
+    var maxX = window.innerWidth - square.offsetWidth;
+    var maxY = window.innerHeight - square.offsetHeight;
+    var x = Math.random() * maxX;
+    var y = Math.random() * maxY;
+    var speedX = 1 + Math.random() * 2;
+    var speedY = 1 + Math.random() * 2;
+
+    setInterval(function() {
+        x += speedX;
+        y += speedY;
+
+        if (x <= 0 || x >= maxX) {
+            speedX *= -1;
+        }
+        if (y <= 0 || y >= maxY) {
+            speedY *= -1;
         }
 
-        function changeBackgroundColor(event) {
-            var mouseX = event.clientX;
-            var mouseY = event.clientY;
+        square.style.left = x + "px";
+        square.style.top = y + "px";
+    }, 10);
+}
 
-            var red = mouseX % 256;
-            var green = mouseY % 256;
-            var blue = (mouseX + mouseY) % 256;
+function redirectToHTML2() {
+    window.location.href = '2.html';
+}
 
-            document.body.style.backgroundColor = "rgb(" + red + ", " + green + ", " + blue + ")";
-        }
-
-        function updateSquareColor() {
-            var currentTime = new Date();
-            var hours = currentTime.getHours();
-            var minutes = currentTime.getMinutes();
-            var seconds = currentTime.getSeconds();
-
-            var red = hours * 10; // Red component based on hours
-            var green = minutes * 4; // Green component based on minutes
-            var blue = seconds * 4; // Blue component based on seconds
-
-            var squares = document.getElementsByClassName("square");
-            for (var i = 0; i < squares.length; i++) {
-                squares[i].style.backgroundColor = "rgb(" + red + ", " + green + ", " + blue + ")";
-            }
-        }
-
-        function animateSquare(square) {
-            var maxX = window.innerWidth - square.offsetWidth;
-            var maxY = window.innerHeight - square.offsetHeight;
-            var x = Math.random() * maxX;
-            var y = Math.random() * maxY;
-            var speedX = 1 + Math.random() * 2;
-            var speedY = 1 + Math.random() * 2;
-
-            setInterval(function() {
-                x += speedX;
-                y += speedY;
-
-                if (x <= 0 || x >= maxX) {
-                    speedX *= -1;
-                }
-                if (y <= 0 || y >= maxY) {
-                    speedY *= -1;
-                }
-
-                square.style.left = x + "px";
-                square.style.top = y + "px";
-            }, 10);
-        }
-
-        function redirectToPage() {
-            window.location.href = '2.html';
-        }
-
-        updateSquareColor(); // Update square color initially
-        animateSquare(document.getElementById("square1")); // Start square1 animation
-        animateSquare(document.getElementById("square2")); // Start square2 animation
-        setInterval(updateSquareColor, 1000); // Update square color every second
-    </script>
+updateSquareColor(); // Update square color initially
+animateSquare(document.getElementById("square1")); // Start square1 animation
+animateSquare(document.getElementById("square2")); // Start square2 animation
+setInterval(updateSquareColor, 1000); // Update square color every second
+</script>
 </body>
 </html>
