@@ -42,6 +42,16 @@
 <body>
     <img id="flashingImage" src="Oreo.png" alt="Flashing Image">
 
-    <button id="greenButton">GREEN</button>
+    <button id="greenButton" onclick="turnGreen()">GREEN</button>
+
+    <script>
+        function turnGreen() {
+            // Change background color to green
+            document.body.style.backgroundColor = "green";
+
+            // Change the flashing image opacity to 0 (invisible)
+            document.getElementById("flashingImage").style.opacity = "0";
+        }
+    </script>
 </body>
 </html>
