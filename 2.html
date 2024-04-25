@@ -3,53 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Million Tiny Squares</title>
+<title>Flashing Image</title>
 <style>
     body {
         margin: 0;
         padding: 0;
-        overflow: hidden; /* Hide scrollbar */
-    }
-    .grid-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        height: 100vh;
         display: flex;
-        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
     }
-    .square {
-        width: 5px; /* Adjust size of each square */
-        height: 5px; /* Adjust size of each square */
-        background-color: black; /* Adjust color of each square */
-        margin: 1px; /* Adjust spacing between squares */
+
+    #flashingImage {
+        position: relative;
+        animation: flash 1s infinite alternate;
+    }
+
+    @keyframes flash {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    #greenButton {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 20px 40px;
+        font-size: 18px;
+        background-color: red;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 10px;
     }
 </style>
 </head>
 <body>
-<div class="grid-container">
-    <!-- Generate 1000x1000 grid of tiny squares -->
-    <!-- Adjust the number of squares based on desired size -->
-    <!-- This example creates a 1000x1000 grid -->
-    <!-- Change the range in the loop to create a larger or smaller grid -->
-    <!-- Each square will be positioned absolutely within the grid container -->
-    <!-- Adjust the size and color of the squares using CSS -->
-    <!-- Note: Creating a million squares may impact performance -->
-    <!-- It's recommended to limit the number of squares for better performance -->
-    <!-- You can experiment with different numbers to find a balance -->
-    <!-- For demonstration purposes, this example creates a smaller grid -->
-    <!-- Feel free to adjust as needed -->
+    <img id="flashingImage" src="oreo.png" alt="Flashing Image">
 
-    <!-- Start of loop to generate squares -->
-    <?php
-    for ($i = 0; $i < 1000; $i++) {
-        for ($j = 0; $j < 1000; $j++) {
-            echo '<div class="square"></div>'; // Create a square
-        }
-    }
-    ?>
-    <!-- End of loop to generate squares -->
-</div>
+    <button id="greenButton">GREEN</button>
 </body>
 </html>
